@@ -161,20 +161,20 @@ class Response(BaseModel):
     agent: Optional[Agent]
     messages: list
 
-refund_agent = Agent(
-    name="Refund Agent",
-    instructions="You are a refund agent. Help the user with refunds.",
-    tools=[execute_refund],
-)
+# refund_agent = Agent(
+#     name="Refund Agent",
+#     instructions="You are a refund agent. Help the user with refunds.",
+#     tools=[execute_refund],
+# )
 
-def transfer_to_refunds():
-    return refund_agent
+# def transfer_to_refunds():
+#     return refund_agent
 
-sales_assistant = Agent(
-    name="Sales Assistant",
-    instructions="You are a sales assistant. Sell the user a product.",
-    tools=[place_order],
-)
+# sales_assistant = Agent(
+#     name="Sales Assistant",
+#     instructions="You are a sales assistant. Sell the user a product.",
+#     tools=[place_order],
+# )
 
 def run_full_turn(agent, messages):
     current_agent = agent
@@ -346,6 +346,7 @@ issues_and_repairs_agent = Agent(
     tools=[execute_refund, look_up_item, transfer_back_to_triage],
 )
 
+# always start with triage agent
 agent = triage_agent
 messages = []
 

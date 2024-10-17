@@ -15,3 +15,10 @@ Demo
 
 Memory
 1. when user gives feedback to Mia on Search Queries should contain current company and alma mater, Mia should remember to search this the next time same workflow is fired
+
+Flow:
+1. Query
+2. Plan?
+3. Main Agent transfers to Gmail/Calendar SubAgent?
+4. SubAgent composes CRUD functions it has access to to answer query
+5. passes control back to Main Agent to reply
