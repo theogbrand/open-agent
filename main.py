@@ -11,8 +11,6 @@ import inspect
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Existing imports and setup...
-
 class Agent(BaseModel):
     name: str = "Agent"
     model: str = "gpt-4o-mini"
@@ -134,12 +132,6 @@ gmail_agent = Agent(
         This will retrieve a list of emails from inbox with optional query and pagination support.
         """
     ),
-    # tools=[
-    #     gmail_actions.list_messages,
-    #     gmail_actions.get_message,
-    #     gmail_actions.send_message,
-    #     gmail_actions.delete_message,
-    # ],
 )
 
 # Modify the calendar_agent function to return an Agent instance directly
@@ -148,13 +140,7 @@ calendar_agent = Agent(
     instructions=(
         "You are a Calendar assistant. Help the user with calendar-related tasks "
         "such as listing events, creating events, updating events, and deleting events."
-    ),
-    # tools=[
-    #     calendar_actions.list_events,
-    #     calendar_actions.create_event,
-    #     calendar_actions.update_event,
-    #     calendar_actions.delete_event,
-    # ],
+    ), # Tools set later below
 )
 
 def transfer_to_gmail_agent():
@@ -165,7 +151,7 @@ def transfer_to_calendar_agent():
     """Transfer to the Calendar Agent for calendar-related tasks."""
     return calendar_agent
 
-# Modify the triage_agent function to return an Agent instance directly
+# Always starts with Triage Agent (Master Agent)
 triage_agent = Agent(
     name="Triage Agent",
     instructions=(
@@ -185,7 +171,6 @@ def main():
     gmail_actions = GmailActions(gmail_service)
     calendar_actions = CalendarActions(calendar_service)
 
-    # Update the tools for gmail_agent and calendar_agent
     gmail_agent.tools = [
         gmail_actions.list_messages,
         gmail_actions.get_message,

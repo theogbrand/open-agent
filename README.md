@@ -6,7 +6,7 @@
 * Structured Outputs, tool calling, information extraction
 * ideas in [SWARM](https://github.com/openai/swarm)
 
-* Gmail, Gcal, Slack
+* Gmail, Gcal, Slack use cases
 
 Demo
 1. Agent fans out for information via Slack/Gmail, summarises it back to user
@@ -16,9 +16,14 @@ Demo
 Memory
 1. when user gives feedback to Mia on Search Queries should contain current company and alma mater, Mia should remember to search this the next time same workflow is fired
 
-Flow:
+Proposed Flow:
 1. Query
 2. Plan?
 3. Main Agent transfers to Gmail/Calendar SubAgent?
 4. SubAgent composes CRUD functions it has access to to answer query
 5. passes control back to Main Agent to reply
+
+# Usage:
+1. install requirements, copied over so might need some manual installations
+2. download credentials.json file to run google-auth.py so token.json is returned to access your own GSuite data
+3. run main.py 
