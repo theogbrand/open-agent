@@ -33,6 +33,7 @@ def main():
 
 def handle_gmail_action(gmail_actions, action, action_data):
     if action == 'gmail_list_messages':
+        # print("query: ", action_data.get('query'))
         messages = gmail_actions.list_messages(
             max_results=action_data.get('max_results', 100),
             query=action_data.get('query')

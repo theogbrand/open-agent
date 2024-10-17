@@ -128,6 +128,11 @@ gmail_agent = Agent(
     instructions=(
         "You are a Gmail assistant. Help the user with email-related tasks "
         "such as listing messages, sending emails, and managing the inbox."
+        """Email Actions:
+        You can manage emails through the Gmail platform using the following formats:
+        {"action": "Get Emails", "max_results": 100, "query": "search_query"}
+        This will retrieve a list of emails from inbox with optional query and pagination support.
+        """
     ),
     # tools=[
     #     gmail_actions.list_messages,
@@ -198,6 +203,7 @@ def main():
     messages = []
 
     while True:
+        print("messages: ", messages)
         user = input("User: ")
         messages.append({"role": "user", "content": user})
 

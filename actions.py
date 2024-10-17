@@ -7,7 +7,22 @@ class GmailActions:
     def __init__(self, gmail_service):
         self.service = gmail_service
 
+
+    # def handle_gmail_action(gmail_actions, action, action_data):
+    # if action == 'gmail_list_messages':
+    #     messages = gmail_actions.list_messages(
+    #         max_results=action_data.get('max_results', 100),
+    #         query=action_data.get('query')
+    #     )
+    #     for message in messages:
+    #         print(f"ID: {message['id']}")
+    #         print(f"Thread ID: {message['threadId']}")
+    #         print(f"Subject: {message['subject']}")
+    #         print(f"From: {message['sender']}")
+    #         print(f"Body: {message['body'][:100]}...")  # Print first 100 characters of the body
+    #         print("-" * 50)
     def list_messages(self, max_results=100, query=None):
+        print("calling tool list_messages")
         try:
             response = self.service.users().messages().list(userId='me', maxResults=max_results, q=query).execute()
             messages = response.get('messages', [])
@@ -17,7 +32,15 @@ class GmailActions:
                 msg_details = self.get_message(message['id'])
                 detailed_messages.append(msg_details)
             
-            return detailed_messages
+            for message in detailed_messages:
+                print(f"ID: {message['id']}")
+                print(f"Thread ID: {message['threadId']}")
+                print(f"Subject: {message['subject']}")
+                print(f"From: {message['sender']}")
+                print(f"Body: {message['body'][:100]}...")  # Print first 100 characters of the body
+                print("-" * 50)
+                # print(messages.content[0].type)
+            return "success"
         except HttpError as error:
             print(f'An error occurred: {error}')
             return []
@@ -38,7 +61,7 @@ class GmailActions:
             
             return {
                 'id': message['id'],
-                # 'threadId': message['threadId'],
+                'threadId': message['threadId'],
                 'subject': subject,
                 'sender': sender,
                 'body': body
