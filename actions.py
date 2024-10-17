@@ -38,7 +38,7 @@ class GmailActions:
             
             return {
                 'id': message['id'],
-                'threadId': message['threadId'],
+                # 'threadId': message['threadId'],
                 'subject': subject,
                 'sender': sender,
                 'body': body
