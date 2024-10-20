@@ -3,3 +3,6 @@ venv
 token.json
 __pycache__
 credentials.json
+taskgen
+letta
+simbian
