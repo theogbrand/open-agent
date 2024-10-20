@@ -53,3 +53,8 @@ try:
         print()
 except TypeError as e:
     print(f"TypeError occurred: {e}")
+
+
+# Create Cron as Tool, allows agent to schedule list of tasks i.e. array[scheduled_tasks]
+# Workflow begins: ask Mia to either create crons to fill scheduled_tasks or manually trigger Gmail check to fill scheduled_tasks based on rule-based logic
+# Cron should be separate system that can "constantly check and execute" even without Mia
